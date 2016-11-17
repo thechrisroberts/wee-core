@@ -1408,7 +1408,7 @@
 						W.$html(wrap, children);
 					} else {
 						W.$each(children, function(cel) {
-							wrap[0].appendChild(cel);
+							wrap.appendChild(cel);
 						});
 					}
 
