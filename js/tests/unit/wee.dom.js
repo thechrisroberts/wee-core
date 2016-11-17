@@ -744,6 +744,25 @@ define(function(require) {
 					'<h1>HEADING ONE</h1><h2>HEADING TWO</h2>',
 					'Function was not executed successfully'
 				);
+			},
+			select: function() {
+				Wee.$append('#container',
+					'<select class="htmlSelect">' +
+						'<option value="one">One</option>' +
+						'<option value="two">Two</option>' +
+					'</select>'
+				);
+
+				Wee.$html('.htmlSelect',
+					'<option value="three">Three</option>' +
+					'<option value="four">Four</option>'
+				);
+
+				assert.strictEqual(Wee.$html('.htmlSelect'),
+					'<option value="three">Three</option>' +
+					'<option value="four">Four</option>',
+					'Did not successfully set and/or get inner HTML'
+				);
 			}
 		},
 		$index: function() {
@@ -757,20 +776,37 @@ define(function(require) {
 				'Incorrect element index returned'
 			);
 		},
-		$insertAfter: function() {
-			Wee.$html('#container',
-				'<div id="wee-inner"></div>'
-			);
+		$insertAfter: {
+			single: function() {
+				Wee.$html('#container',
+					'<div id="wee-inner"></div>'
+				);
 
-			var $el = Wee.$parseHTML('<span class="testing-insertafter"></span>');
+				var $el = Wee.$parseHTML('<span class="testing-insertafter"></span>');
 
-			Wee.$insertAfter($el, '#wee-inner');
+				Wee.$insertAfter($el, '#wee-inner');
 
-			var $next = Wee.$next('#wee-inner');
+				var $next = Wee.$next('#wee-inner');
 
-			assert.ok(Wee.$hasClass($next, 'testing-insertafter'),
-				'Element added successfully.'
-			);
+				assert.ok(Wee.$hasClass($next, 'testing-insertafter'),
+					'Element added successfully.'
+				);
+			},
+
+			'multiple': function() {
+				Wee.$html('#container',
+					'<div class="wee-inner"></div>' +
+					'<div class="wee-inner"></div>'
+				);
+
+				var $el = Wee.$parseHTML('<div class="insert-after"><p class="para"></p></div>');
+
+				Wee.$insertAfter($el, '.wee-inner');
+
+				assert.strictEqual(Wee.$next('.wee-inner', 'testing-insertafter').length, 1,
+					'Element with class of "insert-after" was not inserted'
+				);
+			}
 		},
 		$insertBefore: function() {
 			Wee.$html('#container', '<div id="wee-inner"></div>');
