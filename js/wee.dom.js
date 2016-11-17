@@ -655,16 +655,20 @@
 		 */
 		$index: function(target) {
 			var el = W.$(target)[0],
-				children = W._slice.call(el.parentNode.children),
-				i = 0;
+				i = 0,
+				children;
+
+			if (! el) {
+				return -1;
+			}
+
+			children = W._slice.call(el.parentNode.children);
 
 			for (; i < children.length; i++) {
 				if (children[i] === el) {
 					return i;
 				}
 			}
-
-			return -1;
 		},
 
 		/**
