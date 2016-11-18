@@ -589,9 +589,9 @@ define(function(require) {
 			},
 			'core': function() {
 				Wee.fn.extend({
-				    addNumbers: function(num1, num2) {
-				        return num1 + num2;
-				    }
+					addNumbers: function(num1, num2) {
+						return num1 + num2;
+					}
 				});
 
 				assert.strictEqual(Wee.addNumbers(2, 4), 6,
@@ -1156,6 +1156,18 @@ define(function(require) {
 			assert.isObject(
 				Wee.$unserialize('key1=123&key2[]=value+1&key2[]=value+2'),
 				'Query string is not an object'
+			);
+
+			assert.deepEqual(
+				Wee.$unserialize('key1=123&key2[]=value+1&key2[]=value+2'),
+				{
+					"key1": "123",
+					"key2[]": [
+						"value 1",
+						"value 2"
+					]
+				},
+				'Object does not equal unserialized string.'
 			);
 		},
 		'$setRef': function() {
