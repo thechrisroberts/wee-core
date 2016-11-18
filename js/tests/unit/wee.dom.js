@@ -883,6 +883,14 @@ define(function(require) {
 				assert.isFalse(Wee.$is('ref:is-test', $('.is-tes')),
 					'Returned true'
 				);
+			},
+			'array': function() {
+				assert.isTrue(
+					Wee.$is(1, [
+						1, 2
+					]),
+					'Assertion returned false'
+				);
 			}
 		},
 		$last: function() {
