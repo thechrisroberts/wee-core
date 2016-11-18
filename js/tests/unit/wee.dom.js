@@ -1472,7 +1472,7 @@ define(function(require) {
 					'Value was not set successfully'
 				);
 			},
-			setMultipleValIsArray: function() {
+			'set multiple': function() {
 				Wee.$val('.testing2', 'selectValue1');
 
 				assert.isArray(
