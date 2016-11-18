@@ -25,23 +25,101 @@ define(function(require) {
 			);
 		},
 
-		map: function() {
-			// TODO: Complete
-			assert.strictEqual(Wee.screen.map({
+		map: {
+			single: function() {
+				var num = 0;
+
+				$('html').css('font-family', '"2"');
+
+				Wee.screen.map({
 					size: 1,
-					callback: function() {}
-				}), undefined,
-				'Single event was not mapped successfully'
+					callback: function() {
+						num++;
+					}
+				});
+
+				assert.strictEqual(num, 0,
+					'Screen was not mapped correctly ("num" should be 0)'
+				);
+
+				Wee.screen.map({
+					size: 2,
+					callback: function() {
+						num++;
+					}
+				});
+
+				assert.strictEqual(num, 1,
+					'Screen was not mapped correctly ("num" should be 0)'
+				);
+			},
+
+			once: function() {
+				var num = 0;
+
+				$('html').css('font-family', '"2"');
+
+				Wee.screen.map({
+					min: 4,
+					callback: function() {
+						num++;
+					},
+					once: true
+				});
+
+				$('html').css('font-family', '"5"');
+
+				Wee.screen.run();
+				Wee.screen.run();
+
+				assert.strictEqual(num, 1,
+					'Mapping ran more than once ("num" should equal 1)'
+				);
+			}
+		},
+
+		run: function() {
+			var num = 0;
+
+			$('html').css('font-family', '"2"');
+
+			Wee.screen.map({
+				min: 5,
+				callback: function() {
+					num++;
+				}
+			});
+
+			assert.strictEqual(num, 0,
+				'Did not evaluate breakpoint ("num" should be 0)'
 			);
 
-			assert.strictEqual(Wee.screen.map([{
-					size: 1,
-					callback: function() {}
-				}, {
-					size: 2,
-					callback: function() {}
-				}]), undefined,
-				'Multiple events were not mapped successfully'
+			$('html').css('font-family', '"6"');
+
+			Wee.screen.run();
+
+			assert.strictEqual(num, 1,
+				'Did not evaluate breakpoint ("num" should be 1)'
+			);
+		},
+
+		reset: function() {
+			var num = 0;
+
+			Wee.screen.map({
+				min: 1,
+				callback: function() {
+					num++;
+				},
+				namespace: 'testing'
+			});
+
+			Wee.screen.reset('testing');
+
+			Wee.screen.run();
+
+			assert.strictEqual(num, 1,
+				'Did not evaluate breakpoint ("num" should be 1)'
 			);
 		},
 
