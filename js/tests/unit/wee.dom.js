@@ -1595,10 +1595,10 @@ define(function(require) {
 
 			'with children': function() {
 				Wee.$append('#container',
-					'<div id="wrap-test" class="wrap-test"></div>'
+					'<div id="wrap-test" class="wrap-test"><p class="testPara"></p></div>'
 				);
 
-				Wee.$wrapInner('#wrap-test', '<div id="wrap-test-2"><p class="testPara"></p></div>');
+				Wee.$wrapInner('#wrap-test', '<div id="wrap-test-2"></div>');
 
 				assert.ok(Wee.$parent('#wrap-test-2', '#wrap-test'));
 			}
