@@ -878,6 +878,11 @@ define(function(require) {
 				assert.isTrue(Wee.$is('ref:is-test', $('.is-test')),
 					'Did not return as true'
 				);
+
+				// False object selection
+				assert.isFalse(Wee.$is('ref:is-test', $('.is-tes')),
+					'Returned true'
+				);
 			}
 		},
 		$last: function() {
