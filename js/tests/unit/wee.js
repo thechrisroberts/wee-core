@@ -1152,23 +1152,33 @@ define(function(require) {
 				'Object serialization properly returned.'
 			);
 		},
-		'$unserialize': function() {
-			assert.isObject(
-				Wee.$unserialize('key1=123&key2[]=value+1&key2[]=value+2'),
-				'Query string is not an object'
-			);
-
-			assert.deepEqual(
-				Wee.$unserialize('key1=123&key2[]=value+1&key2[]=value+2'),
-				{
-					"key1": "123",
-					"key2[]": [
-						"value 1",
-						"value 2"
-					]
-				},
-				'Object does not equal unserialized string.'
-			);
+		'$unserialize': {
+			'object': function() {
+				assert.isObject(
+					Wee.$unserialize('key1=123&key2[]=value+1&key2[]=value+2'),
+					'Query string is not an object'
+				);
+			},
+			'value': function() {
+				assert.deepEqual(
+					Wee.$unserialize('key1=123&key2[]=value+1&key2[]=value+2'),
+					{
+						'key1': '123',
+						'key2[]': [
+							'value 1',
+							'value 2'
+						]
+					},
+					'Object does not equal unserialized string.'
+				);
+			},
+			'key': function() {
+				assert.property(
+					Wee.$unserialize('key1=123&key2[]=value+1&key2[]=value+2'),
+					'key1',
+					'Expected key is not present in object.'
+				);
+			}
 		},
 		'$setRef': function() {
 			Wee.$html('#container', '<div data-ref="testElement">1</div>');
