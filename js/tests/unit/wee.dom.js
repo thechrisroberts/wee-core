@@ -1472,6 +1472,14 @@ define(function(require) {
 					'Value was not set successfully'
 				);
 			},
+			setMultipleValIsArray: function() {
+				Wee.$val('.testing2', 'selectValue1');
+
+				assert.isArray(
+					Wee.$val('.testing2'),
+					'Set method did not return array'
+				);
+			},
 			function: function() {
 				Wee.$val('.testing', function(i, value) {
 					if (value.length > 3) {
