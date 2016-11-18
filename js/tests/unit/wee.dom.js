@@ -891,6 +891,15 @@ define(function(require) {
 					]),
 					'Assertion returned false'
 				);
+
+				assert.isTrue(
+					Wee.$is([
+						'ref:hello'
+					], [
+						'ref:hello'
+					]),
+					'Assertion returned false'
+				);
 			}
 		},
 		$last: function() {
