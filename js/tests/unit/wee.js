@@ -745,6 +745,10 @@ define(function(require) {
 			);
 		},
 		'$has': {
+			after: function() {
+				Wee.$set({});
+			},
+
 			'simple value': function() {
 				Wee.$set('test-has', 'value');
 
@@ -771,6 +775,15 @@ define(function(require) {
 				assert.isFalse(Wee.$has('key', 4),
 					'Not detecting any value for "test-has2"'
 				);
+			},
+
+			'no key set': function() {
+				Wee.$set([
+					1,
+					2
+				]);
+
+				assert.isTrue(Wee.$has(1), 'Has method did not return true');
 			}
 		},
 		'$push': function() {
