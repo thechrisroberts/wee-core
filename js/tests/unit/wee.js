@@ -64,7 +64,7 @@ define(function(require) {
 							_construct: function(options) {
 								this.pubProp = options.newVal;
 							}
-						}, null, {		
+						}, null, {
 							args: {
 								newVal: 'suh duh'
 							}
@@ -117,19 +117,19 @@ define(function(require) {
 					'concat array with prepended values': function() {
 						Wee.$concat('concatTest', [4, 5, 6], true);
 
-						assert.deepEqual(Wee.$get('concatTest'), [4, 5, 6, 1, 2, 3], 
+						assert.deepEqual(Wee.$get('concatTest'), [4, 5, 6, 1, 2, 3],
 							'Array was not concatenated correctly.'
 						);
 					}
 				},
 				'$copy': {
 					'copy object': function() {
-						assert.isObject(Wee.$copy({}), 
+						assert.isObject(Wee.$copy({}),
 							'No existence of an object'
 						);
 					},
 					'copy array': function() {
-						assert.isArray(Wee.$copy([]), 
+						assert.isArray(Wee.$copy([]),
 							'No existence of an array'
 						);
 					}
@@ -150,7 +150,7 @@ define(function(require) {
 							key4: 'new'
 						});
 
-						assert.isObject(Wee.$diff(), 
+						assert.isObject(Wee.$diff(),
 							'Did not return an object as expected'
 						);
 					},
@@ -168,7 +168,7 @@ define(function(require) {
 									id: 2
 								},
 								key4: 'new'
-							}), 
+							}),
 							{
 								key1: {
 									after: "blue",
@@ -282,7 +282,7 @@ define(function(require) {
 					'concat array with prepended values': function() {
 						Wee.controller.$concat('concatCtrlTest', [4, 5, 6], true);
 
-						assert.deepEqual(Wee.controller.$get('concatCtrlTest'), [4, 5, 6, 1, 2, 3], 
+						assert.deepEqual(Wee.controller.$get('concatCtrlTest'), [4, 5, 6, 1, 2, 3],
 							'Array was not concatenated correctly.'
 						);
 					}
@@ -353,7 +353,7 @@ define(function(require) {
 					},
 					'advanced': function() {
 						var returnVal;
-						
+
 						Wee.controller.$set('testCtrlObserve2', 'value1');
 
 						Wee.controller.$observe('testCtrlObserve2', function(data, type, diff) {
@@ -370,7 +370,7 @@ define(function(require) {
 							'Did not observe change of "testCtrlObserve2" to 27'
 						);
 					},
-					
+
 					'execute once': function() {
 						var num = 0;
 
@@ -669,7 +669,7 @@ define(function(require) {
 				'Value was not properly set to an array'
 			);
 
-			assert.strictEqual(Wee.$has('testArray.key1'), true, 
+			assert.strictEqual(Wee.$has('testArray.key1'), true,
 				'Global storage object should have key of "key1"'
 			);
 
@@ -735,7 +735,7 @@ define(function(require) {
 			Wee.$push('testPush', 'value1');
 			Wee.$push('testPush', 'value2');
 
-			assert.deepEqual(Wee.$get('testPush'), ['value1', 'value2'], 
+			assert.deepEqual(Wee.$get('testPush'), ['value1', 'value2'],
 				'Second value was not pushed to end of array'
 			);
 		},
@@ -792,7 +792,7 @@ define(function(require) {
 
 			'advanced': function() {
 				var returnVal;
-				
+
 				Wee.$set('testObserve2', 'value1');
 
 				Wee.$observe('testObserve2', function(data, type, diff) {
@@ -1150,6 +1150,12 @@ define(function(require) {
 					key3: 'val3'
 				}), 'key1=val1&key2=val2&key3=val3',
 				'Object serialization properly returned.'
+			);
+		},
+		'$unserialize': function() {
+			assert.isObject(
+				Wee.$unserialize('key1=123&key2[]=value+1&key2[]=value+2'),
+				'Query string is not an object'
 			);
 		},
 		'$setRef': function() {
