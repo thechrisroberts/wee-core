@@ -679,6 +679,17 @@ define(function(require) {
 				assert.strictEqual(Wee.$get('myArray.0'), 'blue',
 					'Array did not return value of "blue"'
 				);
+			},
+			'dollarSignIsArray': function() {
+				Wee.$set('$', [
+					'foo',
+					'baz'
+				]);
+
+				assert.isArray(
+					Wee.$push('$', 'bar'),
+					'Push method did not return an array'
+				);
 			}
 		},
 		'$get': function() {
