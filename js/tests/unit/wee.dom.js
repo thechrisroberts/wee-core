@@ -775,6 +775,10 @@ define(function(require) {
 			assert.strictEqual(Wee.$index('#three'), 2,
 				'Incorrect element index returned'
 			);
+
+			assert.strictEqual(Wee.$index('#four'), -1,
+				'Did not return -1 for non-existant element'
+			);
 		},
 		$insertAfter: {
 			single: function() {
