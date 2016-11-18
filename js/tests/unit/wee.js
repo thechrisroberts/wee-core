@@ -633,6 +633,9 @@ define(function(require) {
 			);
 		},
 		'$set': {
+			after: function() {
+				Wee.$set({});
+			},
 			'standard': function() {
 				assert.strictEqual(Wee.$set('var-123', 'string'), 'string',
 					'Variable "var-123" was set to "string".'
@@ -695,6 +698,26 @@ define(function(require) {
 					Wee.$get('$'),
 					1,
 					'Push method did not return an array with the correct length.'
+				);
+			},
+			'notKeySet': function() {
+				Wee.$set([1, 2]);
+
+				assert.isArray(Wee.$get(), 'Get method did not return an array');
+
+				Wee.$set(1, {
+					foo: 'baz'
+				});
+
+				assert.deepEqual(
+					Wee.$get(),
+					[
+						1,
+						{
+							foo: 'baz'
+						}
+					],
+					'Get method did not return expected value'
 				);
 			}
 		},
