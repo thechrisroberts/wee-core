@@ -680,7 +680,7 @@ define(function(require) {
 					'Array did not return value of "blue"'
 				);
 			},
-			'dollarSignIsArray': function() {
+			'dollarSignKey': function() {
 				Wee.$set('$', [
 					'foo',
 					'baz'
@@ -690,15 +690,9 @@ define(function(require) {
 					Wee.$push('$', 'bar'),
 					'Push method did not return an array'
 				);
-			},
-			'dollarSignLengthOf': function() {
-				Wee.$set('$', [
-					'foo',
-					'baz'
-				]);
 
 				assert.lengthOf(
-					Wee.$push('$', 'bar'),
+					Wee.$get('$'),
 					1,
 					'Push method did not return an array with the correct length.'
 				);
