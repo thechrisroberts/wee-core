@@ -632,52 +632,54 @@ define(function(require) {
 				'HTML was not parsed successfully'
 			);
 		},
-		'$set': function() {
-			assert.strictEqual(Wee.$set('var-123', 'string'), 'string',
-				'Variable "var-123" was set to "string".'
-			);
+		'$set': {
+			'standard': function() {
+				assert.strictEqual(Wee.$set('var-123', 'string'), 'string',
+					'Variable "var-123" was set to "string".'
+				);
 
-			assert.strictEqual(Wee.$set('cont:var-123', 'string'), 'string',
-				'Variable "var-123" was set to "string" in the "cont" namespace.'
-			);
+				assert.strictEqual(Wee.$set('cont:var-123', 'string'), 'string',
+					'Variable "var-123" was set to "string" in the "cont" namespace.'
+				);
 
-			assert.strictEqual(Wee.$set('123 var', 'Testing 123'), 'Testing 123',
-				'Variable "var-123" was set to "Testing 123".'
-			);
+				assert.strictEqual(Wee.$set('123 var', 'Testing 123'), 'Testing 123',
+					'Variable "var-123" was set to "Testing 123".'
+				);
 
-			assert.strictEqual(Wee.$get('var-123'), 'string',
-				'Variable "var-123" is correctly set to "string".'
-			);
+				assert.strictEqual(Wee.$get('var-123'), 'string',
+					'Variable "var-123" is correctly set to "string".'
+				);
 
-			assert.strictEqual(Wee.$get('cont:var-123'), 'string',
-				'Variable "var-123" is correctly set to "string" in the "cont" namespace.'
-			);
+				assert.strictEqual(Wee.$get('cont:var-123'), 'string',
+					'Variable "var-123" is correctly set to "string" in the "cont" namespace.'
+				);
 
-			assert.strictEqual(Wee.$get('123 var'), 'Testing 123',
-				'Variable "123 var" is correctly set to "Testing 123".'
-			);
+				assert.strictEqual(Wee.$get('123 var'), 'Testing 123',
+					'Variable "123 var" is correctly set to "Testing 123".'
+				);
 
-			assert.strictEqual(Wee.$get('set-var-123', 'string', true), 'string',
-				'Variable "set-var-123" is set to the default "string".'
-			);
+				assert.strictEqual(Wee.$get('set-var-123', 'string', true), 'string',
+					'Variable "set-var-123" is set to the default "string".'
+				);
 
-			assert.strictEqual(Wee.$get('set-var-123'), 'string',
-				'Variable "set-var-123" is correctly set to "string".'
-			);
+				assert.strictEqual(Wee.$get('set-var-123'), 'string',
+					'Variable "set-var-123" is correctly set to "string".'
+				);
 
-			assert.isArray(Wee.$set('testArray', [1, 2, 3]), [1, 2, 3],
-				'Value was not properly set to an array'
-			);
+				assert.isArray(Wee.$set('testArray', [1, 2, 3]), [1, 2, 3],
+					'Value was not properly set to an array'
+				);
 
-			assert.strictEqual(Wee.$has('testArray.key1'), true,
-				'Global storage object should have key of "key1"'
-			);
+				assert.strictEqual(Wee.$has('testArray.key1'), true,
+					'Global storage object should have key of "key1"'
+				);
 
-			Wee.$set('myArray', ['blue', 'red', 'green']);
+				Wee.$set('myArray', ['blue', 'red', 'green']);
 
-			assert.strictEqual(Wee.$get('myArray.0'), 'blue',
-				'Array did not return value of "blue"'
-			);
+				assert.strictEqual(Wee.$get('myArray.0'), 'blue',
+					'Array did not return value of "blue"'
+				);
+			}
 		},
 		'$get': function() {
 			assert.strictEqual(Wee.$get('var-234'), null,
