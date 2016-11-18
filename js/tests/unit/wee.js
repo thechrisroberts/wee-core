@@ -690,6 +690,18 @@ define(function(require) {
 					Wee.$push('$', 'bar'),
 					'Push method did not return an array'
 				);
+			},
+			'dollarSignLengthOf': function() {
+				Wee.$set('$', [
+					'foo',
+					'baz'
+				]);
+
+				assert.lengthOf(
+					Wee.$push('$', 'bar'),
+					1,
+					'Push method did not return an array with the correct length.'
+				);
 			}
 		},
 		'$get': function() {
